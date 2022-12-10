@@ -1,0 +1,11 @@
+<p>visit-card-list works!</p>
+<div class="list-wrapper">
+    <app-visit-card class="app-wrapper" *ngFor="let visit of visitsList"
+    [imageSource]="visit.imageSrc"
+    [siteDescription]="visit.siteDescription"
+    
+    [siteName]="visit.siteName"
+    [siteId]="visit.siteId"
+    [userRating]="visit.rating"
+    ></app-visit-card>
+</div>

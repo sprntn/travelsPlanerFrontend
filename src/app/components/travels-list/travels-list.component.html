@@ -1,0 +1,9 @@
+<p>travels-list works!</p>
+<div class="list-wrapper">
+    <app-travel-card class="app-wrapper" *ngFor="let travel of travelsList" 
+        [travelId]="travel.travelId"
+        (deleteTravelOutput)="deleteTravel($event)"
+        (editTravelOutput)="editTravel($event)">
+    </app-travel-card>
+</div>
+<div #formModal></div>

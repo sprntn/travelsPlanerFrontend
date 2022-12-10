@@ -1,0 +1,98 @@
+<p>site-card works!</p>
+<div class="card-wrapper">
+    <div class="card-image">
+        <img src="{{imageSource}}" alt="{{siteName}}">
+        <!--<img src="https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/433/433/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/0526ZP_1270MS_xak_R2-1x1.jpg?2021-08-05T12:44:38+00:00" alt="disney world">-->
+        
+    </div>
+    <div class="card-details">
+        <h5>{{siteName}}  {{siteId}}</h5>
+        <p><span>description: </span>{{siteDescription}}</p>
+        <!--<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora dolores 
+            provident distinctio quidem. Ex est recusandae modi aspernatur. Vel est quae magnam cum minus ratione 
+            voluptatibus esse libero quam quo.</p>-->
+        <a href="{{webSite}}" target="_blank">visit web site</a>
+    </div>
+    <div class="card-rating-container">
+        <ng-container
+            *ngIf="isUserLogged && !isTravelOpen; then starsToSelect; else starsWithoutSelect">
+        </ng-container>
+
+
+        <!---
+        <div class="avgRating" style="margin-left: 10%;">
+            <p>rating: {{siteRating}}</p>
+            <!--<p>rating: 4.2</p>--><!--
+        </div>
+        <div class="currentRating">
+            <ng-container *ngFor="let star of stars">
+                <app-rating-star [starId]="star" [rating]="currentRating" [hover]="hoverRating"
+                (starSelected)="onStarSelected($event)" (starHovered)="onStarHovered($event)" (starLeave)="onStarLeave()"></app-rating-star>    
+            </ng-container>
+        </div>
+    </div>
+    <div class="card-submit">
+        <div *ngIf="" class="submitBtn">
+            <svg (click)="submitRating()" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path 
+                fill="currentColor" d="M16 4c6.6 0 12 5.4 12 12s-5.4 12-12 12S4 22.6 4 16S9.4 4 16 4m0-2C8.3 2 2 8.3 2 16s6.3 14 14 14s14-6.3 14-14S23.7 2 16 2z"/>
+                <path fill="currentColor" d="M24 15h-7V8h-2v7H8v2h7v7h2v-7h7z"/>
+            </svg>
+        </div>-->
+    </div>
+</div>
+
+<ng-template #starsToSelect>
+    <div>
+      Welcome back, friend.
+      <p>please select rating: {{siteAverageRating}}</p>
+    </div>
+    <div class="currentRating">
+        <ng-container *ngFor="let star of stars">
+            <app-rating-star [starId]="star" [rating]="siteAverageRating" [hover]="hoverRating"
+            (starSelected)="userLoggedStarSelected($event)" (starHovered)="onStarHovered($event)" (starLeave)="onStarLeave()"></app-rating-star>    
+        </ng-container>
+        <!--test here-->
+        <div class="submitBtn">
+            <svg (click)="submitRating()" aria-hidden="true" role="img" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path 
+                fill="currentColor" d="M16 4c6.6 0 12 5.4 12 12s-5.4 12-12 12S4 22.6 4 16S9.4 4 16 4m0-2C8.3 2 2 8.3 2 16s6.3 14 14 14s14-6.3 14-14S23.7 2 16 2z"/>
+                <path fill="currentColor" d="M24 15h-7V8h-2v7H8v2h7v7h2v-7h7z"/>
+            </svg>
+        </div>
+        <!--until here-->
+    </div>
+</ng-template>
+
+  <ng-template #starsWithoutSelect>
+    <div class="avgRating" style="margin-left: 10%;">
+        <p><span *ngIf="isTravelOpen">rating for you</span><span *ngIf="!isTravelOpen">average rating:</span> {{siteAverageRating}}</p>
+    </div>
+    <div class="currentRating">
+        <ng-container *ngFor="let star of stars">
+            <app-no-rating-star [isRated]="star <= siteAverageRating"></app-no-rating-star>
+        </ng-container>
+    </div>
+    <div *ngIf="isTravelOpen" class="buttons-row">
+        <div>    
+            <input type="datetime-local" [(ngModel)]="visitDatetime" appDateInRangeValidator #dateTime="ngModel"
+            startDate="{{startTravelDate}}" endDate="{{startTravelDate}}"
+            [class.hasError]="dateTime.invalid&&(dateTime.touched||dateTime.dirty)">
+        </div>
+        <div class="row messages">
+            <p *ngIf="dateTime.hasError('tooEarlyDate')&&(dateTime.touched||dateTime.dirty)">date time is too early</p>
+            <p *ngIf="dateTime.hasError('tooLateDate')&&(dateTime.touched||dateTime.dirty)">date time is too late</p>
+            <p *ngIf="dateTime.hasError('dateInvalid')&&(dateTime.touched||dateTime.dirty)">date time is invalid</p>
+        </div>
+        <svg (click)="deleteSiteFromList()" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" 
+            d="m19.61 18l4.86-4.86a1 1 0 0 0-1.41-1.41l-4.86 4.81l-4.89-4.89a1 1 0 0 0-1.41 1.41L16.78 18L12 22.72a1 1 0 1 0 1.41 
+            1.41l4.77-4.77l4.74 4.74a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" 
+            d="M18 34a16 16 0 1 1 16-16a16 16 0 0 1-16 16Zm0-30a14 14 0 1 0 14 14A14 14 0 0 0 18 4Z" 
+            class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/>
+        </svg>
+        <svg (click)="addVisitToTravel()" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" 
+            d="M16 4c6.6 0 12 5.4 12 12s-5.4 12-12 12S4 22.6 4 16S9.4 4 16 4m0-2C8.3 2 2 8.3 2 16s6.3 14 14 14s14-6.3 14-14S23.7 
+            2 16 2z"/><path fill="currentColor" d="M24 15h-7V8h-2v7H8v2h7v7h2v-7h7z"/>
+        </svg>
+    </div>
+    
+  </ng-template>
+

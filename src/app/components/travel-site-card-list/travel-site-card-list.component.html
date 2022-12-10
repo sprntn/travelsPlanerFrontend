@@ -1,0 +1,23 @@
+<p>travel-site-card-list works!</p>
+<div class="list-wrapper" *ngIf="travelSites">
+    <app-travel-site-card class="app-wrapper" *ngFor="let site of travelSites"
+        [imageSource]="site.imageSource"
+        [siteDescription]="site.siteDescription"
+        [siteName]="site.siteName"
+        [siteId]="site.siteId"
+        [webSite]="site.webSite"
+        [visitDate]="site.datetime"
+        [endTravelDate]="this.travel.beginDate"
+        [startTravelDate]="this.travel.endDate"
+        [visitId]="site.visitId"
+        (removeVisit)="removeVisit($event)"
+    ></app-travel-site-card>
+</div>
+<!--
+    [imageSource]="travelSite.site.imageSource"
+        [siteName]="travelSite.site.siteName"
+        [siteId]="travelSite.site.siteId"
+        [webSite]="travelSite.site.webSite"
+        [siteDescription]="travelSite.site.siteDescription"
+        [travelDate]="travelSite.dateTime"
+-->

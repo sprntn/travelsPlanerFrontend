@@ -1,0 +1,84 @@
+<section class="modal-wraper" (click)="anyClick($event)">
+    <div class="modal-body">
+        <div class="up-row">
+            <h2>{{title}}</h2>
+        </div>
+        
+        <form [formGroup]="newTravelForm">
+            <!--
+            <div class="row">
+                <div class="col">
+                    <label for="over18NumInput">over 18 age travelers:</label>
+                </div>
+                <div class="col">
+                    <input type="number" min="0" formControlName="over18num" id="over18NumInput" [class.hasError]="over18num?.invalid && 
+                    (over18num?.touched || over18num?.dirty)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="upTo18NumInput">over 18 age travelers:</label>
+                </div>
+                <div class="col">
+                    <input type="number" min="0" formControlName="upTo18num" id="upTo18NumInput" [class.hasError]="upTo18num?.invalid && 
+                    (upTo18num?.touched || upTo18num?.dirty)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="under3NumInput">over 18 age travelers:</label>
+                </div>
+                <div class="col">
+                    <input type="number" min="0" formControlName="under3num" id="under3NumInput">
+                </div>
+            </div>
+            -->
+            <div class="row">
+                <div class="col">
+                    <label for="participanrNumInput">participants number:</label>
+                </div>
+                <div class="col">
+                    <input type="number" min="0" formControlName="participantsNum" id="participanrNumInput" 
+                    [class.hasError]="participantsNum?.invalid && (participantsNum?.touched || participantsNum?.dirty)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="startDatetimeInput">start date and time</label>
+                </div>
+                <div class="col">
+                    <input type="datetime-local" formControlName="beginDate" id="startDatetimeInput">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="endDatetimeInput">end date and time</label>
+                </div>
+                <div class="col">
+                    <input type="datetime-local" formControlName="endDate" id="endDatetimeInput">
+                </div>
+            </div>
+            <div class="row messages">
+                <div *ngIf="participantsNum?.invalid && (participantsNum?.touched || participantsNum?.dirty)">
+                    <p *ngIf="participantsNum?.errors?.['minParticipants']">there is no participants</p>
+                </div>
+                <!--
+                <div *ngIf="(over18num?.invalid && (over18num?.touched || over18num?.dirty)) && (upTo18num?.invalid && 
+                (upTo18num?.touched || upTo18num?.dirty))" id="">
+                    <p *ngIf="over18num?.errors?.['minParticipants']">there is no participants</p>
+                </div>
+                -->
+            </div>
+            <div class="down-row">
+                <div>
+                    <svg [class.svgDisabled]="newTravelForm.invalid" (click)="submit(newTravelForm)" id="submit-signin-form-svg" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" 
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11L11 17L21 6.99999" 
+                        class="il-md-length-25 il-md-duration-4 il-md-delay-0"/>
+                    </svg>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</section>

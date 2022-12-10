@@ -1,0 +1,41 @@
+<p>travel-site-card works!</p>
+<div class="card-wrapper">
+    <div class="card-image">
+        <img src="{{imageSource}}" alt="{{siteName}}">
+    </div>
+    <div class="card-details">
+        <h5>{{siteName}}  {{siteId}}  {{visitId}}</h5>
+        <p><span>description: </span>{{siteDescription}}</p>
+        <a href="{{webSite}}">visit web site</a>
+    </div>
+    <div class="card-visit-date">
+        <p>travel date: {{visitDate | date}}</p>
+        <p>travel date: {{visitDate}}</p>
+        <p>travel date: {{visitDate | date:'medium'}}</p>
+    </div>
+    <div>
+        
+            <input type="datetime-local" [(ngModel)]="visitDatetime" appDateInRangeValidator #dateTime="ngModel" 
+            startDate="{{startTravelDate}}" endDate="{{startTravelDate}}"
+            [class.hasError]="dateTime.invalid&&(dateTime.touched||dateTime.dirty)">
+        
+    </div>
+    <div class="row messages">
+        <p *ngIf="dateTime.hasError('tooEarlyDate')&&(dateTime.touched||dateTime.dirty)">date time is too early</p>
+        <p *ngIf="dateTime.hasError('tooLateDate')&&(dateTime.touched||dateTime.dirty)">date time is too late</p>
+        <p *ngIf="dateTime.hasError('dateInvalid')&&(dateTime.touched||dateTime.dirty)">date time is invalid</p>
+    </div>
+    <div>
+        <svg (click)="updateVisitDatetime()" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/><path stroke-dasharray="14" stroke-dashoffset="14" d="M8 12L11 15L16 
+            10"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="14;0"/></path></g>
+        </svg>
+        <svg (click)="deleteVisit()" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" 
+            d="m19.61 18l4.86-4.86a1 1 0 0 0-1.41-1.41l-4.86 4.81l-4.89-4.89a1 1 0 0 0-1.41 1.41L16.78 18L12 22.72a1 1 0 1 0 1.41 
+            1.41l4.77-4.77l4.74 4.74a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" 
+            d="M18 34a16 16 0 1 1 16-16a16 16 0 0 1-16 16Zm0-30a14 14 0 1 0 14 14A14 14 0 0 0 18 4Z" 
+            class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/>
+        </svg>
+    </div>
+</div>

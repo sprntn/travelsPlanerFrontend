@@ -1,0 +1,90 @@
+<section class="modal-wraper" (click)="anyClick($event)">
+    <div class="modal-body">
+        <div class="up-row">
+            <h2>set preferences modal form</h2>
+        </div>
+        <div *ngIf="userEmail">
+            test user email: {{userEmail}}
+        </div>
+        <form [formGroup]="preferencesForm">
+            <div class="row">
+                <div class="col">
+                    <label for="categorySelect">select category</label>
+                </div>
+                <div class="col">
+                    <select class="drop-down" id="categorySelect" formControlName="category" (change)="onCategorySelected($event)">
+                        <option *ngFor="let category of (siteCategories$ | async); index as i" [ngValue]="category.categoryId" >{{category.categoryName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="selectRating">your rating: </label>
+                </div>
+                <div class="col">
+                    <ng-container *ngFor="let star of stars" id="selectRating" >
+                        <app-rating-star [starId]="star" [rating]="currentRating" [hover]="hoverRating"
+                        (starSelected)="onStarSelected($event)" (starHovered)="onStarHovered($event)" (starLeave)="onStarLeave()"></app-rating-star>    
+                    </ng-container>
+                </div>
+                <div class="col">
+                    <svg (click)="addPreference()" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path 
+                        fill="currentColor" d="M16 4c6.6 0 12 5.4 12 12s-5.4 12-12 12S4 22.6 4 16S9.4 4 16 4m0-2C8.3 2 2 8.3 2 16s6.3 14 14 14s14-6.3 14-14S23.7 2 16 2z"/>
+                        <path fill="currentColor" d="M24 15h-7V8h-2v7H8v2h7v7h2v-7h7z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="" id="pref-tbl">
+                <table *ngIf="preferencesList" class="pref-table">
+                    <thead>
+                        <tr>
+                            <th>category</th>
+                            <th>rating</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let pref of preferencesList">
+                        <tr>
+                            <td>{{pref.categoryName}}</td>
+                            <td>{{pref.categoryRating}}</td>
+                            <td>
+                                <svg id="pref..categoryId" (click)="deletePreference(pref.categoryId)" aria-hidden="true" 
+                                    role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path 
+                                    fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 
+                                    256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 
+                                    84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 
+                                    241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 
+                                    24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/>
+                                </svg>
+                            </td>
+                        </tr>
+                        <!--
+                        <tr>
+                            <td>example category 1</td>
+                            <td>example 3.8</td>
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
+                        </tr>
+                        <tr><td>example category 2</td>
+                            <td>example 4.2</td>
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
+                        </tr>-->
+                    </tbody>
+                </table>
+            </div>
+            <!--<div class="row" *ngFor="let pref of preferencesList">
+                <p></p>
+            </div>-->
+            <!--
+            <button (click)="addPreference()">demo add rating</button>
+            -->
+            <div class="row">
+                <p>categories rated list here</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button (click)="submit()">submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

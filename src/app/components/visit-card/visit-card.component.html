@@ -1,0 +1,32 @@
+<p>visit-card works!</p>
+<div class="card-wrapper">
+    <div class="card-image">
+        <img src="{{imageSource}}" alt="{{siteName}}">
+    </div>
+    <div class="card-details">
+        <h5>{{siteName}} {{siteId}}</h5>
+        <p>{{siteDescription}}</p>
+        <a href="demo web site">visit web site</a>
+    </div>
+    <div class="card-rating">
+        <div class="userRating" style="margin-left: 10%;">
+            <div *ngIf="userRating!=undefined">
+                <p>your rating: {{userRating}} </p>
+            </div>
+        </div>
+        <div class="currentRating">
+            <ng-container *ngFor="let star of stars">
+                <app-rating-star [starId]="star" [rating]="currentRating" [hover]="hoverRating"
+                (starSelected)="onStarSelected($event)" (starHovered)="onStarHovered($event)" (starLeave)="onStarLeave()"></app-rating-star>    
+            </ng-container>
+            <div>
+                <svg (click)="updateRating()" class="pointer" aria-hidden="true" role="img" width="2em" height="2em" 
+                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" 
+                    stroke-width="2"><path stroke-linejoin="round" d="M8 12L11 15L16 10" class="il-md-length-15 il-md-duration-4 il-md-
+                    delay-5"/><path d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 
+                    3 16.9706 3 12Z" class="il-md-length-70 il-md-duration-4 il-md-delay-0"/></g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>

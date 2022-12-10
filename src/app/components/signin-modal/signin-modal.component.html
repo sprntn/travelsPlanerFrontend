@@ -1,0 +1,107 @@
+<section class="modal-wraper" (click)="anyClick($event)">
+    <div class="modal-body">
+        <div class="up-row">
+            <h2>signin modal form</h2>
+        </div>
+        <form [formGroup]="signinForm">
+            <div class="row">
+                <div class="col">
+                    <label for="firstNameInput">first name</label>
+                </div>
+                <div class="col">
+                    <input required id="firstNameInput" type="text" formControlName="firstName" 
+                    [class.hasError]="firstName?.invalid&&(firstName?.touched||firstName?.dirty)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="lastNameInput">last name</label>
+                </div>
+                <div class="col">
+                    <input required id="lastNameInput" type="text" formControlName="lastName"
+                    [class.hasError]="lastName?.invalid&&(lastName?.touched||lastName?.dirty)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="emailInput">email</label>
+                </div>
+                <div class="col">
+                    <input required id="emailInput" type="text" formControlName="email"
+                    [class.hasError]="email?.invalid&&(email?.touched||email?.dirty)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="passwordInput">password</label>
+                </div>
+                <div class="col">
+                    <input required id="passwordInput" type="text" formControlName="password"
+                    [class.hasError]="password?.invalid&&(password?.touched||password?.dirty)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="confirmPasswordInput">confirm password</label>
+                </div>
+                <div class="col">
+                    <input required id="confirmPasswordInput" type="text" formControlName="confirmPassword"
+                    [class.hasError]="confirmPassword?.invalid&&(password?.touched||password?.dirty)">
+                </div>
+            </div>
+            <div class="row messages">
+                <div *ngIf="firstName?.invalid&&(firstName?.touched||firstName?.dirty)" id="firstNameErrors">
+                    <p *ngIf="firstName?.errors?.['required']">first name is required</p>
+                    <p *ngIf="firstName?.errors?.['minlength']">first name must be at least 4 characters long</p>
+                    <p *ngIf="firstName?.errors?.['maxlength']">first name can have a maximum of 16 characters</p>
+                </div>
+                <div *ngIf="lastName?.invalid&&(lastName?.touched||lastName?.dirty)" id="lastNameErrors">
+                    <p *ngIf="lastName?.errors?.['required']">last name is required</p>
+                    <p *ngIf="lastName?.errors?.['minlength']">last name must be at least 4 characters long</p>
+                    <p *ngIf="lastName?.errors?.['maxlength']">last name can have a maximum of 16 characters</p>
+                </div>
+                <div *ngIf="false" id="emailErrors"></div>
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" id="passwordErrors">
+                    <p *ngIf="password?.errors?.['required']">password is required</p>
+                    <p *ngIf="password?.errors?.['minlength']">password must be at least 8 characters long</p>
+                    <p *ngIf="password?.errors?.['maxlength']">password can have a maximum of 20 characters</p>
+                    <p *ngIf="password?.errors?.['passwordStrength']">
+                        password must contain digit upper letter lower letter and special character
+                    </p>
+                </div>
+                <div *ngIf="confirmPassword?.invalid && (password?.dirty || password?.touched)" id="confirmPasswordErrors">
+                    <p *ngIf="confirmPassword?.errors?.['passwordMismatch']">Passwords must match</p>
+                    <!--<p *ngIf="confirmPassword?.errors?.['required']">confirm password is required</p>-->
+                </div>
+                <div *ngIf="serverErrorMessage" id="serverError">
+                    <p>{{serverErrorMessage}}</p>
+                </div>
+            </div>
+            <div class="demo-btn">
+                <button (click)="submit()">demo submit</button>
+            </div>
+            <div class="down-row">
+                <div>
+                    <svg [class.svgDisabled]="signinForm.invalid" (click)="submit()" id="submit-signin-form-svg" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" 
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11L11 17L21 6.99999" 
+                        class="il-md-length-25 il-md-duration-4 il-md-delay-0"/>
+                    </svg>
+                </div>
+                <div>
+                    <svg id="reset-signin-form" (click)="resetForm(signinForm)" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" 
+                        viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3.578 6.487A8 
+                        8 0 1 1 2.5 10.5"/><path d="M7.5 6.5h-4v-4"/></g>
+                    </svg>
+                </div>
+                <div>
+                    <svg id="close-signin-form" (click)="closeMe()" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" d="m19.41 18l7.29-7.29a1 
+                        1 0 0 0-1.41-1.41L18 16.59l-7.29-7.3A1 1 0 0 0 9.3 10.7l7.29 7.3l-7.3 7.29a1 1 0 1 0 1.41 1.41l7.3-7.29l7.29 
+                        7.29a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="none" d="M0 0h36v36H0z"/>
+                    </svg>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

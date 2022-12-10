@@ -1,0 +1,491 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root{
+	--green: #27ae60;
+	--black: #192a56;
+	--light-color: #666;
+	--box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+}
+
+*{
+    font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+	outline: none;
+	border: none;
+	text-transform: Captalize;
+	transition: all .2s linear;
+}
+
+html{
+    font-size: 65%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+	scroll-behavior: smooth;
+}
+
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+	padding: 1rem 7%;
+	display: flex;
+    align-items: center;
+	justify-content: space-between;
+	z-index: 1000;
+	box-shadow: var(--box-shadow);
+}
+
+header .logo{
+	color: var(--black);
+	font-size: 2.5rem;
+	font-weight: bolder;
+    cursor: pointer;
+}
+
+header .logo svg{
+	color: var(--green);
+    font-size: 4rem;
+}
+
+header .logo p{
+    display: inline-block;
+}
+
+/*
+.btn-box{
+    font-size: 1.7rem;
+	border-radius: .7rem;
+	padding: .5rem 1.5rem;
+	color: var(--light-color);
+
+    display: inline-block;
+
+    padding: auto;
+    
+}
+
+.btn-box p{
+    display: inline-block;
+    /*
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}*/
+
+header .userZone svg,
+header .userZone a{
+//.btn-box svg{
+    cursor: pointer;
+    margin-left: .5rem;
+	height: 4.5rem;
+	line-height: 4.5rem;
+	width: 4.5rem;
+	text-align: center;
+	font-size: 1.7rem;
+	border-radius: 50%;
+	color: var(--black);
+	background: #eee;
+}
+
+header .userZone svg:hover,
+header .userZone a:hover{
+	color: #fff;
+	background: var(--green);
+	transform: rotate(360deg);
+}
+
+.menu-btn-show, .menu-btn-hide{
+	display: none;
+}
+
+.btn-hide{
+    display: none;
+}
+.btn-show{
+    display: inline-block;
+}
+
+/*
+.icons-navbar.disable svg{
+    pointer-events: none;
+    background: #aaa;
+}
+*/
+
+
+.btn-show.disable{
+    pointer-events: none;
+    background: #aaa;
+}
+
+
+section{
+	padding: 8rem 9%;
+}
+
+section.homePage{
+    background: rgb(228, 226, 226);
+    margin: 0%;
+}
+
+.card-wrapper{
+    width: 22vw;
+
+    //padding: auto;
+    //margin: auto;
+
+    display: grid;
+    grid-template-rows: 3fr 2fr 1fr;
+
+    border-radius: 1.8rem;
+    background-color: rgb(220,220,220);
+    box-shadow: 1rem 2rem 3rem darkslategray;
+}
+
+
+.list-wrapper{
+    //display: grid;
+    //grid-template-columns: repeat(5, 1fr);
+    
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+.app-wrapper{
+    padding: 1rem;
+}
+
+/*
+.my-container-fluid {
+    //width: 100%;
+    max-width: 100%;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+*/
+
+.card-image{
+    width: 100%;
+
+    img{
+        border-top-left-radius: 1.8rem;
+        border-top-right-radius: 1.8rem;
+
+        width:100%;
+        /*height: 200px;*/
+        /*height: 12.5rem;*/
+        height: 25rem;
+        object-fit: cover;
+    }
+}
+
+.card-details{
+    height: 6rem;;        
+}
+
+.card-rating{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+/*
+.card-rating ng-container{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+*/
+
+.rated{
+    fill: darkorange;
+    color: red;   
+}
+
+.un-rated{
+    color: black;
+    fill: rgba(128, 128, 128, 0.507);
+}
+
+.hover-rated{
+    color: rgb(226, 214, 47);
+    fill: rgb(213, 228, 11);
+}
+
+.modal-wraper{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1004;//greater then header z-index = 1000
+    text-align: center;
+    color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0,0,0,.8);//to cover the screen all
+    font-size: 3rem;
+    overflow: auto;//to scroll tall modals 
+
+    //opacity: 0.5;
+
+    //display: flex;
+    //align-items: center;
+	//justify-content: space-between;
+
+    .modal-body{
+        width: 80%;
+        //margin: auto;
+        
+        //padding: 2rem;
+        background: #f2f2f2;
+
+        /* margin exposes part of the modal background */
+        //margin: 4rem;
+
+        border-radius: 1.7rem;
+        //opacity: 1.0;
+        .row{
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            padding: 1rem;
+
+            .col select{
+                width: 70%;
+            }
+        }
+
+        input, label{
+            width: 90%;
+            font-size: 2rem;
+            color: black;
+            border-radius: 1rem;
+        }
+
+        input.hasError{
+            border: .1rem solid red;
+        }
+
+        .up-row{
+            //display: flex;
+            //justify-content: space-between;
+            //-items: center;
+            padding: 1rem;
+        }
+
+        .down-row{
+            padding: 1rem;
+            display: flex;
+            justify-content: space-around;
+
+            svg{
+                cursor: pointer;
+            }
+
+            svg.svgDisabled{
+                color: #bbb;
+                pointer-events: none;
+                cursor: not-allowed;
+            }
+        }
+
+        .messages{
+            color: red;
+            font-size: 1.5rem;
+            display: block;
+            align-items: center;
+            justify-content: center;
+
+            
+        }
+
+        
+
+        /*
+        #close-login-form{
+            cursor: pointer;
+            //margin-left: auto;
+            margin-right: 1rem;
+        }
+        */
+        /*
+        .col-25{
+            width: 25%;
+        }
+        .col-75{
+            width: 75%;
+        }
+        */
+
+        /*
+        #submit-login-form-btn{
+            width: 80%;
+            border-radius: 1rem;
+            background: #aaa;
+        }
+        */
+    }
+
+    //input{
+    //    background-color: rgba(172, 167, 167, 0.699);
+    //}
+}
+
+input.hasError{
+    border: .1rem solid red;
+}
+//#pref-tbl{
+//    margin: auto;
+//}
+
+.pref-table{
+    //border-top-left-radius: 1rem;
+    //border-top-right-radius: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    border-collapse: collapse;
+    font-size: 1.5rem;
+    margin: 2.5rem;
+    min-width: 50vw;
+    text-align: left;
+
+    margin: auto;
+
+    thead tr{
+        background-color: #585858;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    th, td{
+        padding: 1.5rem 2rem;
+        color: #fff;
+    }
+
+    //tbody tr:nth-of-type(odd){
+    //    background-color: #999;
+    //}
+
+    tbody:nth-of-type(odd){
+        background-color: #aaa;
+    }
+    tbody:nth-of-type(even){
+        background-color: #898989;
+    }
+}
+
+.icons-navbar div{
+    display:inline-block;
+    text-align:center;
+}
+
+//media//
+
+@media (max-width: 991px){
+
+	html{
+		font-size: 50%;
+	}
+
+	header{
+		padding: 1rem 2rem;
+	}
+}
+
+@media (max-width: 768px){
+
+    .menu-btn-hide{
+        display: none;
+        //color: red;
+    }
+    .menu-btn-show{
+        display: inline-block;
+        //color: red;
+    }
+
+    .icons-navbar {
+        position: absolute;
+		top: 100%;
+		/*top: 0;*/
+		left: 0;
+		right: 0;
+		background: #fff;
+		border-top: .1rem solid rgba(0,0,0,.2);
+		border-bottom: .1rem solid rgba(0,0,0,.2);
+		padding: 1rem;
+		/*clip-path: polygon(0 0,100% 0, 100% 0, 0 0);*/
+		/*hide navbar*/
+		display: none;
+    }
+
+    .icons-navbar.active{
+        /*show n row*/
+        /*
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /*show in column*/
+        
+        display: block;
+
+        
+    }
+
+    /*
+    .icons-navbar.active svg{
+        /*show in column centered
+        margin: auto;
+    }
+    */
+
+    header .icons-navbar svg{
+		//display: block;
+		padding: 1.5rem;
+		margin: 1rem;
+		font-size: 2rem;
+		background: #eee;
+	}
+
+    header .icons-navbar svg.btn-show{
+        display: block;
+    }
+
+    header .icons-navbar svg.btn-hide{
+        display: none;
+    }
+
+    .modal-wraper .modal-body .row{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .card-wrapper{
+        width: 30vw;
+    }
+}
+
+@media (max-width: 481px){
+
+    .card-wrapper{
+        width: 75vw;
+    }
+
+    .modal-wraper .modal-body .row{
+        display: block;
+
+        .col{
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+}

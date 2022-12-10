@@ -1,0 +1,21 @@
+<p>site-card-list works!</p>
+<div class="list-wrapper">
+    <app-site-card class="app-wrapper" *ngFor="let site of sitesList"
+        [imageSource]="site.imageSource"
+        [siteId]="site.siteId"
+        [siteDescription]="site.siteDescription"
+        [siteName]="site.siteName"
+        [webSite]="site.webSite"
+        [siteAverageRating] = "site.siteAverageRating"
+        [isUserLogged]="currentUserEmail != ''"
+        [userEmail]="currentUserEmail"
+        [isTravelOpen]="isTravelOpen"
+        [travelId]="travelId"
+        (removeSiteFromList)="removeSiteFromList($event)"
+
+        [endTravelDate]="endTravelDate"
+        [startTravelDate]="startTravelDate"
+        >
+    </app-site-card>
+</div>
+
