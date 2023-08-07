@@ -31,7 +31,7 @@ export class AddTravelModalComponent implements OnInit {
     private customValidator: CustomValidatorService, 
     private travelsService: TravelsService,
     //private getTravelDetailsService : GetTravelDetailsService,
-    private getTravelIdService: GetTravelIdService 
+    //private getTravelIdService: GetTravelIdService 
     ) { }
 
   //get over18num() { return this.newTravelForm.get('over18num'); }

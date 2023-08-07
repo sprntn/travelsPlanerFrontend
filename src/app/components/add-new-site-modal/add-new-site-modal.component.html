@@ -1,0 +1,85 @@
+<section class="modal-wraper" (click)="anyClick($event)">
+    <div class="modal-body">
+        <div class="up-row">
+            <h2>{{title}}</h2>
+        </div>
+
+        <form [formGroup]="newSiteForm">
+            <div class="row">
+                <div class="col">
+                    <label for="siteName">Site name</label>
+                </div>
+                <div class="col">
+                    <input id="siteName" formControlName="siteName" placeholder="site name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="description">description</label>
+                </div>
+                <div class="col">
+                    <!-- <input id="description" formControlName="description" placeholder="web site"> -->
+                    <textarea id="description" formControlName="description" placeholder="description"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="website">Website</label>
+                </div>
+                <div class="col">
+                    <input formControlName="website" placeholder="web site">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="imgSrc">image source</label>
+                </div>
+                <div class="col">
+                    <input formControlName="imgSrc" placeholder="imageSource">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="categorySelect">category</label>
+                </div>
+                <div class="col">
+                    <select id="categorySelect" formControlName="categorySelect">
+                        <option *ngFor="let category of siteCategories$ | async" [ngValue]="category.categoryId">{{category.categoryName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="down-row">
+                <div>
+                    <!-- <svg (click)="submit(newSiteForm)"  -->
+                    <svg (click)="submit()" 
+                        id="submit-add-site-form-svg" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" 
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11L11 17L21 6.99999" 
+                        class="il-md-length-25 il-md-duration-4 il-md-delay-0"/>
+                    </svg>
+                </div>
+                <!-- <div>
+                    <svg [class.svgDisabled]="loginForm.invalid" (click)="submit(loginForm)" id="submit-login-form-svg" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" 
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11L11 17L21 6.99999" 
+                        class="il-md-length-25 il-md-duration-4 il-md-delay-0"/>
+                    </svg>
+                </div>
+                <div>
+                    <svg id="reset-login-form" (click)="resetForm(loginForm)" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" 
+                        viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3.578 6.487A8 
+                        8 0 1 1 2.5 10.5"/><path d="M7.5 6.5h-4v-4"/></g>
+                    </svg>
+                </div>
+                <div>
+                    <svg id="close-login-form" (click)="closeMe()" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" d="m19.41 18l7.29-7.29a1 
+                        1 0 0 0-1.41-1.41L18 16.59l-7.29-7.3A1 1 0 0 0 9.3 10.7l7.29 7.3l-7.3 7.29a1 1 0 1 0 1.41 1.41l7.3-7.29l7.29 
+                        7.29a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="none" d="M0 0h36v36H0z"/>
+                    </svg>
+                </div> -->
+            </div>
+        </form>
+    </div>
+</section>
+

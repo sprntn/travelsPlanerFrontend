@@ -25,6 +25,15 @@ html{
 	scroll-behavior: smooth;
 }
 
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 96%;               
+    background-color:#000;
+    height: 1px;
+  }
+
 header{
 	position: fixed;
 	top: 0;
@@ -114,6 +123,18 @@ header .userZone a:hover{
 .icons-navbar.disable svg{
     pointer-events: none;
     background: #aaa;
+}
+*/
+
+/*
+div.my-test-show{
+    
+    background: red;
+
+}
+
+div.my-test-hide{
+    background: blue;
 }
 */
 
@@ -263,13 +284,23 @@ section.homePage{
             .col select{
                 width: 70%;
             }
+
+            .col #categorySelect{
+                width: 90%;
+            }
         }
 
-        input, label{
+        //input, label{
+        input, label, textarea, select{
             width: 90%;
             font-size: 2rem;
             color: black;
             border-radius: 1rem;
+        }
+
+        textarea{
+            resize: none;
+            height: 10rem;
         }
 
         input.hasError{
@@ -388,6 +419,7 @@ input.hasError{
     display:inline-block;
     text-align:center;
 }
+
 
 //media//
 

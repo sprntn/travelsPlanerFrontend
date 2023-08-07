@@ -1,0 +1,32 @@
+<!-- <button (click)="toggleContent()">Toggle Content</button> -->
+
+<div  #contentContainer [style.height.px]="contentHeight" class="content">
+    <!-- <div id="addsiteformdiv" *ngIf="showContent; then frmContent; else showBtn" class="mytest1"></div> -->
+    <div id="addsiteformdiv" *ngIf="showContent; then frmContent; else showBtn" class="mytest1"></div>
+</div>
+
+<ng-template #frmContent>
+    <div id="frmContent" #frmContent>
+      add site form goes here
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <button (click)="toggleContent()">Toggle Content</button>
+    </div>
+</ng-template>
+<ng-template #showBtn>
+    <div id="showBtn" #showBtn>
+      open form button goes here
+      <button (click)="toggleContent()">Toggle Content</button>
+    </div>
+</ng-template>
+

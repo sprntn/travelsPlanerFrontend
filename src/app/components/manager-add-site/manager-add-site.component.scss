@@ -1,0 +1,48 @@
+// #box{
+//     width: 90%;
+//     margin: auto;
+//     //padding: 20px;
+//     background-color: yellowgreen;
+
+    
+
+//     transition: height 0.8s ease;
+
+//     #addsiteformdiv{
+//         //height: 200px;
+//         width: 100%;
+//         background-color: antiquewhite;
+//     }
+    
+//     #openBtn{
+//         //height: 50px;
+//         width: 100%;
+//         background-color: darkcyan;
+//     }
+// }
+// .mycontent {
+//     height: auto;
+//     overflow: hidden;
+//     transition: height 0.3s ease;
+//   }
+// .mytest1{
+//     //height: 0;
+//     height: auto;
+//     overflow: hidden;
+//     transition: height 0.3s ease;
+// }
+.content {
+    overflow: hidden;
+    //transition: height 0.3s ease; /* Transition on height property */
+    transition: height 3.0s ease; /* Transition on height property */
+    background-color: antiquewhite;
+
+    #frmContent{
+        //height: 500px;
+        height: auto;
+    }
+    #showBtn{
+        //height: 900px;
+        height: auto;
+    }
+  }

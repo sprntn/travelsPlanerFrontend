@@ -20,6 +20,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
   @Output() cardinalsErrorEvent = new EventEmitter();
   @Output() connectErrorEvent = new EventEmitter();
 
+  
   userEmail: string ="";
   userPassword: string ="";
 

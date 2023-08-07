@@ -22,6 +22,15 @@ export class AuthService {
     return this.http_client.post<any>(this.apiURL + "userLogin", user).pipe(catchError(this.handleAuthError));
   }
 
+  loginManager(managerEmail: string, managerPassword: string){
+    console.log(`logging in, credential: \nemail: ${managerEmail} \npassword: ${managerPassword}`);
+    const manager = {
+      "email" : managerEmail,
+      "password" : managerPassword
+    }
+    return this.http_client.post<any>(this.apiURL + "managerLogin", manager);
+  }
+
   demoLoginUser(userEmail : string, UserPassword: string): Observable<string>{
     console.log("logging in, credential: \nemail: " + userEmail + "\npassword: " + UserPassword);
 
@@ -33,6 +42,10 @@ export class AuthService {
     return this.http_client.post<string>(this.apiURL + "demoLogin", user).pipe(
       catchError(this.handleAuthError)
     );
+  }
+
+  demoLoginManager(managerEmail: string, managerPassword: string){
+    console.log(`logging in, credential: \nemail: ${managerEmail} \npassword: ${managerPassword}`);
   }
 
   demoGetToken(){

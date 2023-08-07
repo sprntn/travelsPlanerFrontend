@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angu
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GetLoggedUserService } from 'src/app/cros-components-services/get-logged-user.service';
+import { AddNewSiteModalService } from 'src/app/modalServices/add-new-site-modal.service';
 //import { GetTravelDetailsService } from 'src/app/cros-components-services/get-travel-details.service';
 import { AddTravelModalService } from 'src/app/modalServices/add-travel-modal.service';
+import { LoginManagerModalServiceService } from 'src/app/modalServices/login-manager-modal-service.service';
 import { LoginModalServiceService } from 'src/app/modalServices/login-modal-service.service';
 import { PreferencesModalService } from 'src/app/modalServices/preferences-modal.service';
 import { SigninModalServiceService } from 'src/app/modalServices/signin-modal-service.service';
@@ -33,9 +35,11 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
   public userEmail!: string;
 
   constructor(
+    private addNewSiteService: AddNewSiteModalService,
     private getLoggedUserService :GetLoggedUserService,
     //private getTravelDetailsService : GetTravelDetailsService,
     private loginModalService: LoginModalServiceService,
+    private loginManagerModalService: LoginManagerModalServiceService,
     private signinModalService: SigninModalServiceService,
     private preferencesModalService: PreferencesModalService,
     private addTravelModalService: AddTravelModalService,
@@ -93,6 +97,35 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
     });
   }
 
+  private openNewSiteModal(): void{
+    console.log("main navbar open new site modal");
+    this.sub = this.addNewSiteService.openModal(this.entry).subscribe();
+  }
+
+  private openLoginManagerModal(): void{
+    console.log("main navbar - open manager login modal");
+    this.sub = this.loginManagerModalService.openModal(this.entry).subscribe({
+      next: (res: string) => {
+        switch(res){
+          case 'confirm':
+            console.log('succeeded');
+            this.isLoggedUser = true;
+            this.router.navigate(['main-page/logged-manager-sites']);
+
+            break;
+          case 'reject':
+            console.log('rejected');
+            break;
+          case 'connectError':
+            console.log('not connecected');
+        }
+      },
+      error: () => {},
+      complete: () => {this.isOpenModal = false;}
+
+    })
+  }
+
   private openLoginModal():void{
     this.sub = this.loginModalService.openModal(this.entry, this.loginModalTitle).subscribe({
       next: (res: string) => {
@@ -118,6 +151,19 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
 
   changeBtnShow(): void{
     this.showMenu = !this.showMenu;
+  }
+
+  
+  loginManager(): void{
+    console.log("login manager");
+    this.isOpenModal = true;
+    this.openLoginManagerModal();
+  }
+
+  addSite(): void{
+    console.log("add site button played!");
+    this.isOpenModal = true;
+    this.openNewSiteModal();
   }
 
   login():void{
@@ -211,7 +257,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
     this.role = "admin";
     this,this.router.navigate(['/admin'])
   }
-
+  
   loginAdmin(): void{
     console.log("login admin");
   }
@@ -219,10 +265,6 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
   goToManagerPage():void{
     console.log("manager page");
     this.role = "manager";
-  }
-
-  loginManager(): void{
-    console.log("login manager");
   }
 }
 

@@ -1,32 +1,16 @@
+<p>login-manager-modal works!</p>
 <section class="modal-wraper" (click)="anyClick($event)">
-    <!--<div class="modal-header">
-        <h2>{{title}}</h2>
-    </div>-->
     <div class="modal-body">
-        <!--
         <div class="up-row">
-            <div id="emptyDiv"></div>
-            <h2>{{title}}</h2>
-            <svg id="close-login-form" (click)="closeMe()" aria-hidden="true" role="img" width="1em" height="1em" 
-                preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" d="m19.41 18l7.29-7.29a1 
-                1 0 0 0-1.41-1.41L18 16.59l-7.29-7.3A1 1 0 0 0 9.3 10.7l7.29 7.3l-7.3 7.29a1 1 0 1 0 1.41 1.41l7.3-7.29l7.29 
-                7.29a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="none" d="M0 0h36v36H0z"/>
-            </svg>  
+            <h2>add title here</h2>
         </div>
-        -->
-        <div class="up-row">
-            <h2>{{title}}</h2>
-        </div>
-        <form #loginForm="ngForm" ><!--(ngSubmit)="demoFunc()"-->
-            <!--<div class="row form-group">-->
+        <form #loginForm="ngForm" >
             <div class="row">
-                <!--<div class="col-25">-->
                 <div class="col">
                     <label for="emailInput">Email</label>
                 </div>
-                <!--<div class="col-75">--><!--need to choose between ngModel and [(ngModel)]="userEmail"-->
-                    <div class="col">
-                    <input ngModel required [(ngModel)]="userEmail" type="text" class="form-control" id="emailInput" 
+                <div class="col">
+                    <input ngModel required [(ngModel)]="managerEmail" type="text" class="form-control" id="emailInput" 
                         [class.hasError]="email.invalid&&(email.touched||email.dirty)" name="emailInput" #email="ngModel" placeholder="enter Your email">
                 </div>
             </div>
@@ -34,14 +18,14 @@
                 <div class="col">
                     <label for="passwordInput">password</label>
                 </div>
-                <div class="col"><!--need to choose between ngModel and [(ngModel)]="userPassword"-->
-                    <input ngModel required [(ngModel)]="userPassword" type="text" class="form-control" id="passwordInput" 
+                <div class="col">
+                    <input ngModel required [(ngModel)]="managerPassword" type="text" class="form-control" id="passwordInput" 
                         [class.hasError]="password.invalid&&(password.touched||password.dirty)" name="passwordInput" #password="ngModel" placeholder="enter your password" minlength="8">
                 </div>
             </div>
             <div class="demo-row">
                 <button (click)="demoSubmit()" type="button">demo submit</button>
-                <button (click)="testTokenGetBack()" type="button">demo get user Email</button>
+                
             </div>
             <div class="row messages">
                 <p *ngIf="email.invalid&&(email.touched||email.dirty)">please enter valid email</p>
@@ -50,13 +34,11 @@
             </div>
             <div class="down-row">
                 <div>
-                    <!--<button type="button" id="submit-login-form-btn" (click)="submit()">-->
-                        <svg [class.svgDisabled]="loginForm.invalid" (click)="submit(loginForm)" id="submit-login-form-svg" aria-hidden="true" role="img" width="1em" height="1em" 
-                            preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" 
-                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11L11 17L21 6.99999" 
-                            class="il-md-length-25 il-md-duration-4 il-md-delay-0"/>
-                        </svg>
-                    <!--</button>-->
+                    <svg [class.svgDisabled]="loginForm.invalid" (click)="submit(loginForm)" id="submit-login-form-svg" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" 
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11L11 17L21 6.99999" 
+                        class="il-md-length-25 il-md-duration-4 il-md-delay-0"/>
+                    </svg>
                 </div>
                 <div>
                     <svg id="reset-login-form" (click)="resetForm(loginForm)" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" 
@@ -73,8 +55,5 @@
                 </div>
             </div>
         </form>
-    </div>    
-    
-    <!--<button (click)="submit()">confirm</button>-->  
+    </div>
 </section>
-

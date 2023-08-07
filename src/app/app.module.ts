@@ -35,6 +35,12 @@ import { AddTravelComponent } from './components/add-travel/add-travel.component
 import { TravelSiteCardComponent } from './components/travel-site-card/travel-site-card.component';
 import { TravelSiteCardListComponent } from './components/travel-site-card-list/travel-site-card-list.component';
 import { DateInRangeValidatorDirective } from './directives/date-in-range-validator.directive';
+import { LoginManagerModalComponent } from './components/login-manager-modal/login-manager-modal.component';
+import { ManagerSitesListComponent } from './components/manager-sites-list/manager-sites-list.component';
+import { ManagerSiteCardComponent } from './components/manager-site-card/manager-site-card.component';
+import { ManagerSiteCardListComponent } from './components/manager-site-card-list/manager-site-card-list.component';
+import { ManagerAddSiteComponent } from './components/manager-add-site/manager-add-site.component';
+import { AddNewSiteModalComponent } from './components/add-new-site-modal/add-new-site-modal.component';
 
 
 
@@ -66,7 +72,13 @@ import { DateInRangeValidatorDirective } from './directives/date-in-range-valida
     AddTravelComponent,
      TravelSiteCardComponent,
      TravelSiteCardListComponent,
-     DateInRangeValidatorDirective
+     DateInRangeValidatorDirective,
+     LoginManagerModalComponent,
+     ManagerSitesListComponent,
+     ManagerSiteCardComponent,
+     ManagerSiteCardListComponent,
+     ManagerAddSiteComponent,
+     AddNewSiteModalComponent
   ],
   imports: [
     BrowserModule,

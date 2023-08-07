@@ -15,11 +15,12 @@ export class LoginModalServiceService {
   constructor() { }
 
   openModal(entry: ViewContainerRef, modalTitle: string){
+    
     //deprecated method/////////
     //let factory = this.resolver.resolveComponentFactory(LoginModalComponent);
     //this.componentRef = entry.createComponent(factory);
 
-    //create new modai instance
+    //create new modal instance
     this.componentRef = entry.createComponent(LoginModalComponent);
     //set modal attributes
     this.componentRef.instance.title = modalTitle;

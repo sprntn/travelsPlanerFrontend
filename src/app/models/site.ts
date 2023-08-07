@@ -7,4 +7,6 @@ export class Site{
     public siteName!: string;
     public siteId!: number;
     public siteAverageRating!: number;
+
+    public mainCategoryId!: number;
 }

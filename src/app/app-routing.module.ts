@@ -6,6 +6,7 @@ import { EditTravelPageComponent } from './components/edit-travel-page/edit-trav
 import { LoggedUserSitesListComponent } from './components/logged-user-sites-list/logged-user-sites-list.component';
 import { LoggedUserVisitsListComponent } from './components/logged-user-visits-list/logged-user-visits-list.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { ManagerSitesListComponent } from './components/manager-sites-list/manager-sites-list.component';
 import { NoUserSitesListComponent } from './components/no-user-sites-list/no-user-sites-list.component';
 import { SiteCardListComponent } from './components/site-card-list/site-card-list.component';
 import { TravelPageComponent } from './components/travel-page/travel-page.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
       {path: 'site-list' , component: SiteCardListComponent},
       {path: 'visits-list' , component: VisitCardListComponent},
       {path: 'logged-user-sites', component: LoggedUserSitesListComponent},
+      {path: 'logged-manager-sites', component: ManagerSitesListComponent},
       {path: 'logged-user-visits', component: LoggedUserVisitsListComponent},
       {path: 'no-user-sites', component: NoUserSitesListComponent},
       {path: 'user-travel-page', component: TravelPageComponent},
