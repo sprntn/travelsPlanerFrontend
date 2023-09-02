@@ -46,7 +46,10 @@ export class LoginManagerModalComponent implements OnInit {
   }
 
   resetForm(loginForm: any){
-    console.log("manager login modal reseted");
+    //console.log("manager login modal reseted");
+    loginForm.form.reset();
+    console.log(loginForm.value);
+    this.serverErrorMessage = undefined;
   }
 
   anyClick(event: any){

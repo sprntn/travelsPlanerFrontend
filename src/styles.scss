@@ -34,6 +34,11 @@ hr {
     height: 1px;
   }
 
+// body{
+//     display: flex;
+//     flex-direction: column;
+// }
+
 header{
 	position: fixed;
 	top: 0;
@@ -146,7 +151,11 @@ div.my-test-hide{
 
 
 section{
-	padding: 8rem 9%;
+    //test here
+    //flex: 1;
+
+	//padding: 8rem 9%;
+	padding: 12rem 9%;
 }
 
 section.homePage{
@@ -420,7 +429,9 @@ input.hasError{
     text-align:center;
 }
 
-
+.managersitecard{
+    margin-top: 3rem;
+}
 //media//
 
 @media (max-width: 991px){

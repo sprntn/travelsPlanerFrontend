@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ManagerSite } from 'src/app/models/managerSite';
 import { siteCategory } from 'src/app/models/siteCategory';
+import { CustomValidatorService } from 'src/app/services/custom-validator.service';
 import { SitesService } from 'src/app/services/sites.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class AddNewSiteModalComponent implements OnInit {
 
   siteCategories$!:Observable<siteCategory[]>;
 
-  constructor(private formBuilder: FormBuilder, private sitesService: SitesService) { }
+  constructor(private formBuilder: FormBuilder, private sitesService: SitesService, private customValidator: CustomValidatorService) { }
 
   ngOnInit(): void {
 
@@ -34,12 +35,19 @@ export class AddNewSiteModalComponent implements OnInit {
 
     this.newSiteForm = this.formBuilder.group({
       siteName: ['', [Validators.required, Validators.minLength(4)]],
-      website: ['', [Validators.required, Validators.maxLength(100)]],
+      website: ['', [Validators.required, Validators.maxLength(100), this.customValidator.urlText()]],
       description: ['', [Validators.required,Validators.minLength(4), Validators.maxLength(1000)]],
-      imgSrc: [''],
+      imgSrc: ['',[Validators.required, this.customValidator.imageUrlText()]],
       categorySelect: ['']
     });
   }
+
+  
+
+  get siteName() { return this.newSiteForm.get('siteName'); }
+  get website() { return this.newSiteForm.get('website'); }
+  get description() { return this.newSiteForm.get('description'); }
+  get imgSrc() { return this.newSiteForm.get('imgSrc'); }
 
   //submit(form: any):  void{
   submit():  void{
@@ -56,6 +64,14 @@ export class AddNewSiteModalComponent implements OnInit {
     }  
     
     this.sitesService.addSite(site)
+  }
+
+  resetForm(siteForm: any){
+    //console.log("manager login modal reseted");
+    //siteForm.form.reset();
+    this.newSiteForm.reset();
+    console.log(siteForm.value);
+    //this.serverErrorMessage = undefined;
   }
 
   closeMe() {

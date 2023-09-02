@@ -1,0 +1,18 @@
+<section class="modal-wraper" (click)="anyClick($event)">
+    <div class="modal-body">
+        <div class="up-row">
+            <h2>manager signin modal form</h2>
+        </div>
+        <form [formGroup]="signinForm">
+            <div class="row">
+                <div class="col">
+                    <label for="firstNameInput">first name</label>
+                </div>
+                <div class="col">
+                    <input required id="firstNameInput" type="text" formControlName="firstName" 
+                    [class.hasError]="firstName?.invalid&&(firstName?.touched||firstName?.dirty)">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

@@ -5,34 +5,6 @@
         </div>
         
         <form [formGroup]="newTravelForm">
-            <!--
-            <div class="row">
-                <div class="col">
-                    <label for="over18NumInput">over 18 age travelers:</label>
-                </div>
-                <div class="col">
-                    <input type="number" min="0" formControlName="over18num" id="over18NumInput" [class.hasError]="over18num?.invalid && 
-                    (over18num?.touched || over18num?.dirty)">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="upTo18NumInput">over 18 age travelers:</label>
-                </div>
-                <div class="col">
-                    <input type="number" min="0" formControlName="upTo18num" id="upTo18NumInput" [class.hasError]="upTo18num?.invalid && 
-                    (upTo18num?.touched || upTo18num?.dirty)">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="under3NumInput">over 18 age travelers:</label>
-                </div>
-                <div class="col">
-                    <input type="number" min="0" formControlName="under3num" id="under3NumInput">
-                </div>
-            </div>
-            -->
             <div class="row">
                 <div class="col">
                     <label for="participanrNumInput">participants number:</label>
@@ -60,12 +32,45 @@
             </div>
             <div class="row messages">
                 <div *ngIf="participantsNum?.invalid && (participantsNum?.touched || participantsNum?.dirty)">
-                    <p *ngIf="participantsNum?.errors?.['minParticipants']">there is no participants</p>
+                    <!-- <p *ngIf="participantsNum?.errors?.['minParticipants']">there is no participants</p> -->
+                    <p *ngIf="participantsNum?.hasError('minParticipants')">there is no participants</p>
+                </div>
+                <div *ngIf="beginDate?.invalid && (beginDate?.touched || beginDate?.dirty)">
+                    <p *ngIf="beginDate?.errors?.['required']">start date is required</p>
+                </div>
+                <div *ngIf="endDate?.invalid && (endDate?.touched || endDate?.dirty)">
+                    <p>test end date error</p>
+                    <p *ngIf="endDate?.errors?.['required']">end date is required</p>
+                    <p *ngIf="endDate?.hasError('required')">end date is required</p>
+                    <p *ngIf="newTravelForm.get('endDate')?.hasError('required')">end date is required!!!!!!</p>
+                    <p *ngIf="newTravelForm.get('endDate')?.errors?.['required']">end date is required!!!!!!</p>
                 </div>
                 <!--
-                <div *ngIf="(over18num?.invalid && (over18num?.touched || over18num?.dirty)) && (upTo18num?.invalid && 
-                (upTo18num?.touched || upTo18num?.dirty))" id="">
-                    <p *ngIf="over18num?.errors?.['minParticipants']">there is no participants</p>
+                <div *ngIf="(beginDate?.touched || beginDate?.dirty) && beginDate?.invalid">
+                     <p *ngIf="beginDate?.errors?.['dateAlreadyPassed']">begin date has already passed</p> 
+                    <p *ngIf="beginDate?.hasError('dateAlreadyPassed')">begin date has already passed</p>
+                </div>
+
+                <br/>
+                <p>test area</p>
+                <p *ngIf="newTravelForm.get('endDate')?.hasError('dateAlreadyPassed')">
+                    Selected date cannot be in the past.
+                </p>
+                <p *ngIf="beginDate?.errors?.['dateAlreadyPassed']">begin date has already passed</p>
+                <p *ngIf="beginDate?.hasError('dateAlreadyPassed')">begin date has already passed</p>
+                <p *ngIf="endDate?.hasError('dateAlreadyPassed')">end date has already passed</p>
+                <p *ngIf="endDate?.hasError('demoValidator')">demoValidator!!!!!!!</p>
+                <p *ngIf="endDate?.errors?.['dateAlreadyPassed']">end date has already passed</p>
+                <p *ngIf="endDate?.errors?.['demoValidator']">demoValidator!!!!!!!</p>
+                <p>end of test area</p>
+                <br/>
+
+                <div *ngIf="(endDate?.touched || endDate?.dirty) && endDate?.invalid">
+                    <p *ngIf="(beginDate?.touched || beginDate?.dirty) && endDate?.errors?.['endBeforeStart']">The end date can only be after the start date</p>
+                    
+                    <p *ngIf="endDate?.errors?.['dateAlreadyPassed']">end date has already passed</p> 
+                    
+                    <p *ngIf="endDate?.hasError('dateAlreadyPassed')">end date has already passed</p>
                 </div>
                 -->
             </div>

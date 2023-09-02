@@ -1,27 +1,26 @@
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { Subject } from 'rxjs';
-
-import { SigninModalComponent } from '../components/signin-modal/signin-modal.component';
+import { SigninManagerModalComponent } from '../components/signin-manager-modal/signin-manager-modal.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SigninModalServiceService {
+export class SigninManagerModalServiceService {
 
-  private componentRef!: ComponentRef<SigninModalComponent>;
+  private componentRef!: ComponentRef<SigninManagerModalComponent>;
   private componentSubscriber!: Subject<string>;
 
   constructor() { }
 
-  //openModal(entry: ViewContainerRef){
-  openModal(entry: ViewContainerRef, role: string){
-    this.componentRef = entry.createComponent(SigninModalComponent);
-    //this.componentRef.instance.title = modalTitle;
-    this.componentRef.instance.role = role;
+  //openModal(entry: ViewContainerRef, modalTitle: string)
+  openModal(entry: ViewContainerRef)
+  {
+    this.componentRef = entry.createComponent(SigninManagerModalComponent);
+
     this.componentRef.instance.closeMeEvent.subscribe(() => this.closeModal());
     this.componentRef.instance.succeededEvent.subscribe(() => this.confirm());
     this.componentRef.instance.connectErrorEvent.subscribe(() => this.connectError());
-    
+
     this.componentSubscriber = new Subject<string>();
     return this.componentSubscriber.asObservable();
   }
@@ -31,6 +30,10 @@ export class SigninModalServiceService {
   }
 
   closeModal() {
+    //test
+    console.log('close event here');
+    this.componentSubscriber.next('closing modal');
+    
     this.componentSubscriber.complete();
     this.componentRef.destroy();
   }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidatorService } from 'src/app/services/custom-validator.service';
+import { ManagersService } from 'src/app/services/managers.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class SigninModalComponent implements OnInit {
 
-  @Input() title!: string;
+  @Input() role!: string;
 
   @Output() closeMeEvent = new EventEmitter();
   @Output() succeededEvent = new EventEmitter();
@@ -26,30 +27,39 @@ export class SigninModalComponent implements OnInit {
   private passwordMinLength:number = 8;
 
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private customValidator: CustomValidatorService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private usersService: UsersService, 
+    private customValidator: CustomValidatorService, 
+    private managersService: ManagersService
+  ) { }
 
   ngOnInit(): void {
+    //test
+    //console.log(`role is ${this.role}`);
+
     this.initializeForm();
   }
 
+  
   initializeForm():void{
     this.signinForm = this.formBuilder.group({
-      firstName: ['first name test',{
+      firstName: ['',{
         validators: [
           Validators.minLength(this.nameMinLength),
           Validators.maxLength(this.nameMaxLength)
         ],
         updateOn: 'change'
       }],
-      lastName: ['last name test',{
+      lastName: ['',{
         validators: [
           Validators.minLength(this.nameMinLength),
           Validators.maxLength(this.nameMaxLength)
         ],
         updateOn: 'change'
       }],
-      email: ['email test'],
-      password: ['password test',{
+      email: ['',[this.customValidator.isValidEmail()]],
+      password: ['',{
         validators: [
           Validators.minLength(this.passwordMinLength),
           Validators.maxLength(this.passwordMaxLength),
@@ -57,7 +67,7 @@ export class SigninModalComponent implements OnInit {
         ],
         updateOn: 'change'
       }],
-      confirmPassword: ['confirm password test',{Validators:[Validators.required]}]
+      confirmPassword: ['',{Validators:[Validators.required]}]
     },
     {
       validator: this.customValidator.passwordMatch('password', 'confirmPassword')
@@ -87,24 +97,34 @@ export class SigninModalComponent implements OnInit {
   }
 
   submit(){
-    this.usersService.addUser(this.signinForm.value).subscribe({
-      next: () => {
-        console.log("user added successfully");
-      },
-      error: (res) => {
-        console.log(res);
-        console.log("status: " + res.status);
-        if(res.status == 0){//test, need to be 409
-          this.serverErrorMessage = "this email already exist"
-        }
-        //console.log("some error: " + res);
-        //console.log(res.status);
-        //if(res.status === 409){
-        //  console.log("409");
-        //}
-      },
-      complete: () => {}
-    });
+    if(this.role === 'user'){
+      this.usersService.addUser(this.signinForm.value).subscribe({
+        next: () => {
+          console.log("user added successfully");
+          //this.resetForm(this.signinForm);
+          this.closeMe();
+        },
+        error: (res) => {
+          console.log(res);
+          console.log("status: " + res.status);
+          if(res.status == 409){
+            this.serverErrorMessage = "this email already exist"
+          }
+        },
+        complete: () => {}
+      });
+    }
+    else{
+      // manager service add manager...
+      this.managersService.addManager(this.signinForm.value).subscribe({
+        next: () => {
+          console.log("manager added successfully");
+        },
+        error: () => {},
+        complete: () => {}
+      });
+    }
+    
   }
 
   resetForm(signinForm: any){

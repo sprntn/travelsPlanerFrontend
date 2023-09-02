@@ -1,6 +1,8 @@
-<p>edit-travel-page works!</p>
 <section>
-    <h1>sites in your travel</h1>
+    <div class="inPageTitle">
+        <h1>sites in your travel</h1>
+    </div>
+    
 
     <ng-container *ngIf="{sites: travelSites$ | async, travel: travel$ | async} as travelProperties"><!--travelSites$ | async as selectedSsites-->
         <div *ngIf="travelProperties.travel && travelProperties.sites">
@@ -8,7 +10,11 @@
         </div>
     </ng-container>
 
-    <h1>add sites to your travel</h1>
+    
+    <div class="inPageTitle" id="addSitesTitle">
+        <h1>add sites to your travel</h1>
+    </div>
+    
     
     <ng-container *ngIf="{sites: userSitesList$ | async, travel: travel$ | async} as travelNSites">
         <div *ngIf="travelNSites.travel && travelNSites.sites">
@@ -16,31 +22,5 @@
             [startTravelDate]="travelNSites.travel.beginDate" [endTravelDate]="travelNSites.travel.endDate"></app-site-card-list>
         </div>
     </ng-container>
-    <!--
-    <ng-container *ngIf="travel$ | async as travel">
-        <app-travel-site-card-list [travelSites] = "travel.travelPlan"></app-travel-site-card-list>
-    </ng-container>
     
-    <ng-container *ngIf="travel$.travelPlan">
-        <app-travel-site-card-list [travelSites] = "travel$?.travelPlan"></app-travel-site-card-list>
-    </ng-container>
-    
-    <ng-container *ngrxLet="travel$ as travel">
-        <app-travel-site-card-list [travelSites] = "travel.travelPlan"></app-travel-site-card-list>
-    </ng-container>
-    
-
-    <!--
-    <app-travel-site-card-list [travelSites] = "(travel$ | async)?.travelPlan"></app-travel-site-card-list>
-    
-    
-    <h1>add sites to your travel</h1>
-    
-    <ng-container *ngIf="userSitesList$ | async as sitesToSelect">
-        <app-site-card-list [sitesList] = "sitesToSelect" [currentUserEmail] = "userEmail" [isTravelOpen]="true" 
-        [travelId]="travelId" [startTravelDate]="" [endTravelDate]=""></app-site-card-list>
-    </ng-container>
-    <!--
-    <app-site-card-list [sitesList] = "userSitesList" [currentUserEmail] = "userEmail" [isTravelOpen]="true" [travelId]="travelId"></app-site-card-list>
-    -->
 </section>

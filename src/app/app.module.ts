@@ -41,6 +41,7 @@ import { ManagerSiteCardComponent } from './components/manager-site-card/manager
 import { ManagerSiteCardListComponent } from './components/manager-site-card-list/manager-site-card-list.component';
 import { ManagerAddSiteComponent } from './components/manager-add-site/manager-add-site.component';
 import { AddNewSiteModalComponent } from './components/add-new-site-modal/add-new-site-modal.component';
+import { SigninManagerModalComponent } from './components/signin-manager-modal/signin-manager-modal.component';
 
 
 
@@ -78,7 +79,8 @@ import { AddNewSiteModalComponent } from './components/add-new-site-modal/add-ne
      ManagerSiteCardComponent,
      ManagerSiteCardListComponent,
      ManagerAddSiteComponent,
-     AddNewSiteModalComponent
+     AddNewSiteModalComponent,
+     SigninManagerModalComponent
   ],
   imports: [
     BrowserModule,

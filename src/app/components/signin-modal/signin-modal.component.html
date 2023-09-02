@@ -1,7 +1,7 @@
 <section class="modal-wraper" (click)="anyClick($event)">
     <div class="modal-body">
         <div class="up-row">
-            <h2>signin modal form</h2>
+            <h2>signin as {{role}}</h2>
         </div>
         <form [formGroup]="signinForm">
             <div class="row">
@@ -60,7 +60,11 @@
                     <p *ngIf="lastName?.errors?.['minlength']">last name must be at least 4 characters long</p>
                     <p *ngIf="lastName?.errors?.['maxlength']">last name can have a maximum of 16 characters</p>
                 </div>
-                <div *ngIf="false" id="emailErrors"></div>
+                <!-- <div *ngIf="false" id="emailErrors"></div> -->
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                    <p *ngIf="email?.errors?.['required']">email is required</p>
+                    <p *ngIf="email?.value && email?.errors?.['invalidEmail']">The email is invalid</p>
+                </div>
                 <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" id="passwordErrors">
                     <p *ngIf="password?.errors?.['required']">password is required</p>
                     <p *ngIf="password?.errors?.['minlength']">password must be at least 8 characters long</p>

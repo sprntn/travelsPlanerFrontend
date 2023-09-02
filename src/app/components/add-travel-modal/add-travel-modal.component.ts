@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GetTravelDetailsService } from 'src/app/cros-components-services/get-travel-details.service';
 import { GetTravelIdService } from 'src/app/cros-components-services/get-travel-id.service';
@@ -37,6 +37,8 @@ export class AddTravelModalComponent implements OnInit {
   //get over18num() { return this.newTravelForm.get('over18num'); }
   //get upTo18num() { return this.newTravelForm.get('upTo18num'); }
   get participantsNum() {return this.newTravelForm.get('participantsNum')}
+  get beginDate() {return this.newTravelForm.get('beginDate')}
+  get endDate() {return this.newTravelForm.get('endDate')}
 
   ngOnInit(): void {
     this.currentUserEmail = localStorage.getItem("userEmail")??"";
@@ -48,13 +50,24 @@ export class AddTravelModalComponent implements OnInit {
       //over18num: [2],
       //upTo18num: [0],
       //under3num: [0]
-      participantsNum: [2],
-      beginDate: [],
-      endDate: []
+
+      //participantsNum: [2,{ validaors: [this.customValidator.minParticipants()]}],
+      participantsNum: [2, [this.customValidator.minParticipants()]],
+      // //beginDate: [,{Validators: [this.customValidator.dateAlreadyPassed('beginDate')]}],
+      // beginDate: [,[this.customValidator.dateAlreadyPassed()]],
+      // //endDate: [,{Validators: [this.customValidator.dateAlreadyPassed('endDate')]}]
+      // endDate: [,[this.customValidator.dateAlreadyPassed()]]
+
+      //endDate: [null, [Validators.required, this.customValidator.dateAlreadyPassed()]],
+      endDate: [null, [Validators.required]],
+      //beginDate: [null, [Validators.required, this.customValidator.dateAlreadyPassed(), this.customValidator.demoValidator()]]
+      beginDate: [null, [Validators.required]]
+      
     },
     {
       //validator: this.customValidator.minParticipants('over18num', 'upTo18num')
-      validator: this.customValidator.minParticipants('participantsNum')
+      //validator: this.customValidator.minParticipants('participantsNum')
+      //validator: this.customValidator.beginBeforeEndDates()
     });
   }
 
@@ -86,44 +99,7 @@ export class AddTravelModalComponent implements OnInit {
     }
 
     this.closeMe();
-    /*
-    var newTravel = this.newTravelForm.value, tempTravel = JSON.parse(newTravel);
-    tempTravel.userEmail = this.currentUserEmail;
-    newTravel = JSON.stringify(tempTravel);
-    */
-
     
-    
-    
-    
-
-    //console.log("with user email: " + newTravel);
-    //navigate to travels page and open the travel received
-    //console.log("open travel modal now");
-
-    
-
-    //test
-    //this.travelAddedEvent.emit(newTravel);
-    //this.router.navigate(['main-page/user-travel-page']);
-    //this.router.navigate(['main-page/add-travel']);
-    //this.getTravelDetailsService.travelDetailsSubject$.next(newTravel);
-
-    
-
-    /*
-    //this.travelsService.addTravel(this.newTravelForm.value).subscribe({
-    this.travelsService.addTravel(newTravel).subscribe({
-      next: (travel) => {
-        //navigate to travels page and open the travel received
-        console.log("open travel modal now");
-
-        this.travelAddedEvent.emit();
-      },
-      error: () => {},
-      complete: () => {}
-    });
-    */
   }
 
   closeMe() {

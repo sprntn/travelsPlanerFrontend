@@ -36,6 +36,8 @@ export class PreferencesModalComponent implements OnInit {
   preferencesList: userPreferences[] = [];
   //preferencesList$!: Observable<userPreferences>;
 
+  serverErrorMessage: string | undefined = undefined;
+
   constructor(private formBuilder: FormBuilder, private sitesService: SitesService, private usersService: UsersService) { }
 
   ngOnInit(): void {
@@ -49,13 +51,6 @@ export class PreferencesModalComponent implements OnInit {
 
   initializeForm():void{
     this.preferencesForm = this.formBuilder.group({
-      //category: new FormControl('select category'),
-      //category: ['select category'],
-      //rating: new FormControl(this.currentRating)
-      //rating: [this.currentRating]
-      //demoInput: ["demo input"],
-      //demoInput2: [this.demoString],
-      //category: new FormControl(this.preferencesList.categoryRatings[0].categoryId),
       category: [],
       rating: [this.currentRating]
     });
@@ -80,7 +75,7 @@ export class PreferencesModalComponent implements OnInit {
     this.siteCategories$ = this.sitesService.getCategories();
   }
 
-  initializePreferences(): void{      //temp hardcoded
+  initializePreferences(): void{      
     
     forkJoin([
       this.sitesService.getCategories(),
@@ -125,6 +120,7 @@ export class PreferencesModalComponent implements OnInit {
     //check weather is new preference or alrady exist one
     for(const element of this.preferencesList){
       if(element.categoryId == this.selectedCategoryId){
+        console.log("this category rating allready exist");
         if(element.categoryRating != this.currentRating){
           this.usersService.updatePreference({userEmail: this.userEmail, categoryId: this.selectedCategoryId, categoryRating: this.currentRating}).subscribe({
             next: () => {
@@ -137,7 +133,7 @@ export class PreferencesModalComponent implements OnInit {
         return;
       }
     }
-
+    console.log("this category rating not exist");
     this.usersService.addReference({userEmail: this.userEmail, categoryId: this.selectedCategoryId, categoryRating: this.currentRating}).subscribe({
       next: () => {
         this.preferencesList.push({categoryId:this.selectedCategoryId, categoryName: this.selectedCategoryName, categoryRating: this.currentRating});
@@ -149,10 +145,26 @@ export class PreferencesModalComponent implements OnInit {
     });
   }
 
+  // anyClick(event: any){
+  //   if(event.target.nodeName === 'SECTION'){//להשלים ניקוי
+  //     this.closeMeEvent.emit();
+  //   }
+  // }
+
   anyClick(event: any){
     if(event.target.nodeName === 'SECTION'){//להשלים ניקוי
       this.closeMeEvent.emit();
     }
+    else
+    {
+      if(event.target.nodeName === 'INPUT' && this.serverErrorMessage){
+        this.serverErrorMessage = undefined;//clear the server error message
+      }
+    }
+  }
+
+  closeMe() {
+    this.closeMeEvent.emit();
   }
 
   onStarSelected(id: number): void{
@@ -190,7 +202,16 @@ export class PreferencesModalComponent implements OnInit {
     });
   }
 
-  submit(){
+  // submit(){
 
+  // }
+
+  resetForm(preferencesForm: any){
+    console.log("reset form")//test
+    //signinForm.form.reset();
+    preferencesForm.reset();
+    this.currentRating = 0;
+    console.log(preferencesForm.value);
+    this.serverErrorMessage = undefined;
   }
 }

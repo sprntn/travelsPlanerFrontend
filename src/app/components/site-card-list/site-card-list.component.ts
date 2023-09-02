@@ -44,19 +44,7 @@ export class SiteCardListComponent implements OnInit {
     const index = this.sitesList.findIndex((site) => {
       site.siteId == siteId
     });
-    //var site = new Site();
-    //site = this.sitesList[index];
-    /*
-    const site = new Site();
-    site.imageSource = this.sitesList[index].imageSource;
-    site.siteAverageRating = this.sitesList[index].siteAverageRating;
-    site.siteDescription = this.sitesList[index].siteDescription;
-    site.siteId = siteId;
-    site.siteName = this.sitesList[index].siteName;
-    site.webSite = this.sitesList[index].webSite;
-
-    this.selectedSitesList.push(site);
-    */
+    
    this.selectedSitesList.push(this.sitesList[index]);
   }
 

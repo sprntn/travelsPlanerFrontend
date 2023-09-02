@@ -1,16 +1,12 @@
-<p>site-card works!</p>
 <div class="card-wrapper">
     <div class="card-image">
         <img src="{{imageSource}}" alt="{{siteName}}">
-        <!--<img src="https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/433/433/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/0526ZP_1270MS_xak_R2-1x1.jpg?2021-08-05T12:44:38+00:00" alt="disney world">-->
         
     </div>
     <div class="card-details">
         <h5>{{siteName}}  {{siteId}}</h5>
         <p><span>description: </span>{{siteDescription}}</p>
-        <!--<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora dolores 
-            provident distinctio quidem. Ex est recusandae modi aspernatur. Vel est quae magnam cum minus ratione 
-            voluptatibus esse libero quam quo.</p>-->
+        
         <a href="{{webSite}}" target="_blank">visit web site</a>
     </div>
     <div class="card-rating-container">
@@ -18,27 +14,6 @@
             *ngIf="isUserLogged && !isTravelOpen; then starsToSelect; else starsWithoutSelect">
         </ng-container>
         
-
-
-        <!---
-        <div class="avgRating" style="margin-left: 10%;">
-            <p>rating: {{siteRating}}</p>
-            <!--<p>rating: 4.2</p>--><!--
-        </div>
-        <div class="currentRating">
-            <ng-container *ngFor="let star of stars">
-                <app-rating-star [starId]="star" [rating]="currentRating" [hover]="hoverRating"
-                (starSelected)="onStarSelected($event)" (starHovered)="onStarHovered($event)" (starLeave)="onStarLeave()"></app-rating-star>    
-            </ng-container>
-        </div>
-    </div>
-    <div class="card-submit">
-        <div *ngIf="" class="submitBtn">
-            <svg (click)="submitRating()" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path 
-                fill="currentColor" d="M16 4c6.6 0 12 5.4 12 12s-5.4 12-12 12S4 22.6 4 16S9.4 4 16 4m0-2C8.3 2 2 8.3 2 16s6.3 14 14 14s14-6.3 14-14S23.7 2 16 2z"/>
-                <path fill="currentColor" d="M24 15h-7V8h-2v7H8v2h7v7h2v-7h7z"/>
-            </svg>
-        </div>-->
     </div>
 </div>
 

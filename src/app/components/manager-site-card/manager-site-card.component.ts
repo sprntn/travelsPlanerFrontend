@@ -106,14 +106,6 @@ export class ManagerSiteCardComponent implements OnInit {
     console.log(`editable: ${this.editable}`);
   }
   
-  // modelChanged(event: any, formControllName: string) : void{
-  //   switch(formControllName){
-  //     case ''
-  //   }
-    
-  //   console.log('new value: ' + event);
-  // }
-
   toggleEdit(): void {
     this.enabledit = !this.enabledit;
     console.log(`toggle edit ${this.enabledit}`);

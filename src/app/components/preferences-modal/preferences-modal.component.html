@@ -58,16 +58,7 @@
                                 </svg>
                             </td>
                         </tr>
-                        <!--
-                        <tr>
-                            <td>example category 1</td>
-                            <td>example 3.8</td>
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
-                        </tr>
-                        <tr><td>example category 2</td>
-                            <td>example 4.2</td>
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
-                        </tr>-->
+                        
                     </tbody>
                 </table>
             </div>
@@ -77,12 +68,35 @@
             <!--
             <button (click)="addPreference()">demo add rating</button>
             -->
-            <div class="row">
+            <!-- <div class="row">
                 <p>categories rated list here</p>
-            </div>
-            <div class="row">
+            </div> -->
+            
+            <!-- <div class="row">
                 <div class="col">
                     <button (click)="submit()">submit</button>
+                </div>
+            </div> -->
+            <div class="down-row">
+                <!-- <div>
+                    <svg [class.svgDisabled]="preferencesForm.invalid" (click)="submit()" id="submit-signin-form-svg" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" 
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11L11 17L21 6.99999" 
+                        class="il-md-length-25 il-md-duration-4 il-md-delay-0"/>
+                    </svg>
+                </div> -->
+                <div>
+                    <svg id="reset-signin-form" (click)="resetForm(preferencesForm)" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" 
+                        viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3.578 6.487A8 
+                        8 0 1 1 2.5 10.5"/><path d="M7.5 6.5h-4v-4"/></g>
+                    </svg>
+                </div>
+                <div>
+                    <svg id="close-signin-form" (click)="closeMe()" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" d="m19.41 18l7.29-7.29a1 
+                        1 0 0 0-1.41-1.41L18 16.59l-7.29-7.3A1 1 0 0 0 9.3 10.7l7.29 7.3l-7.3 7.29a1 1 0 1 0 1.41 1.41l7.3-7.29l7.29 
+                        7.29a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="none" d="M0 0h36v36H0z"/>
+                    </svg>
                 </div>
             </div>
         </form>

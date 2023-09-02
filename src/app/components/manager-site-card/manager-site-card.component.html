@@ -1,17 +1,3 @@
-<p>manager-site-card works!</p>
-<!-- imageSource!: string;
-siteDescription!: string;
-webSite!: string;
-siteName!: string;
-siteId!: number;
-siteAverageRating!: number; -->
-<!-- <p>image source: {{imageSource}}</p>
-<p>siteDescription: {{siteDescription}}</p>
-<p>webSite: {{webSite}}</p>
-<p>siteName: {{siteName}}</p>
-<p>siteId: {{siteId}}</p>
-<p>siteAverageRating: {{siteAverageRating}}</p>
-<hr> -->
 <div class="managersitecard">
     <p><em><b>test</b> category: {{mainCategoryId}}</em></p>
     <img src="{{imageSource}}" alt="{{siteName}}">
@@ -24,7 +10,7 @@ siteAverageRating!: number; -->
             </div>
             <div class="ratingrow">
                 <label for="" class="label">average rating</label>
-                <p>{{siteAverageRating}}</p>
+                <p>{{siteAverageRating.toFixed(2)}}</p>
             </div>
             <div class="contentrow">
                 <label for="" class="label">web site</label>

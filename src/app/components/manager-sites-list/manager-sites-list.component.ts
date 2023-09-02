@@ -19,21 +19,8 @@ export class ManagerSitesListComponent implements OnInit {
 
     this.sitesService.getManagerSites(this.managerEmail).subscribe({
       next: (sites) => {
-        // const x = sites.map(s => {const site : Site = {
-        //   imageSource: s.imageSource,
-        //   mainCategoryId: s.mainCategoryFK
-        // }
-
-        // }})
-
+        
         this.sitesList = sites;
-
-        // this.sitesList = sites.map(s => {
-        //   const site = new Site();
-        //   site.imageSource = s.imageSource;
-        //   site.mainCategoryId = s.mainCategoryFK
-        //   return site;
-        // })
 
         console.log("getting manager sites: " + JSON.stringify(sites));
       },

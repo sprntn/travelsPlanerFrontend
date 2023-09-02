@@ -66,7 +66,7 @@ export class SiteCardComponent implements OnInit {
   }
 
   addVisitToTravel(): void{
-    console.log("add site" + this.siteId);
+    console.log("add site " + this.siteId + " to travel");
     this.visitsService.addVisit({
       siteId: this.siteId, 
       travelId: this.travelId, 

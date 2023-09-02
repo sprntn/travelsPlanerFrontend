@@ -17,10 +17,6 @@ export class EditTravelPageComponent implements OnInit {
 
   public travelId: number = 0;
 
-  //public userTravelsList: Travel  = new Travel();
-  //public userSitesList: Site[] = [];
-  //public userTravelsList$!: Observable< Travel[]>;
-  //public travel$!: Observable< Travel>;
   public userSitesList$!: Observable< Site[]>;
   //public travel!: Travel;
   //public travelSites: SelectedSite[] = [];
@@ -40,49 +36,14 @@ export class EditTravelPageComponent implements OnInit {
     
     this.route.params.subscribe((params: Params) => {
       this.travelId = params['travelId'];
-      //test
-      console.log("travel id received: " + this.travelId);
+      
+      
       //this.travel$ = this.travelService.getTravel(this.travelId);
       this.travel$ = this.travelService.getTravel(this.travelId);
       this.travelSites$ = this.travelService.getTravelSites(this.travelId);
       
       this.userSitesList$ = this.sitesService.getUserSites(this.userEmail);
     });
-    /*
-    this.getTravelIdService.travelIdSubject$.subscribe({
-      next: (res) => {
-        this.travelId = res;
-        console.log("travel id: " + this.travelId);
-        
-         // get travels by id  v
-         //get user sites list  v
-         // pass the travel to edit travel page
-         // pass the sites list to add sites to travel page
-         
-        //this.userTravelsList$ = this.travelService.getUserTravels(this.userEmail);
-        //this.userSitesList$ = this.sitesService.getUserSites(this.userEmail);
-        this.travelService.getUserTravels(this.userEmail).subscribe({
-          next: (travels) => {
-            this.userTravelsList = travels;
-            //test
-            console.log("user travels:" + JSON.stringify(this.userTravelsList));
-          },
-          error: () => {},
-          complete: () => {}
-        });
-        this.sitesService.getUserSites(this.userEmail).subscribe({
-          next: (sites) => {
-            this.userSitesList = sites;
-            //test
-            console.log("user sites" + JSON.stringify(this.userSitesList));
-          },
-          error: () => {},
-          complete: () => {}
-        });
-      },
-      error: () => {},
-      complete: () => {}
-    });
-    */
+    
   }
 }

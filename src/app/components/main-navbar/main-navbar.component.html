@@ -1,4 +1,3 @@
-<p>main-navbar works!</p>
 <header>
     <div class="logoZone" id="logoZone">
         <a class="logo" routerLink="/main-page">
@@ -35,7 +34,7 @@
         <ng-container [ngSwitch]="role">
             <ng-container *ngSwitchCase="'user'" [ngTemplateOutlet]="userTemplate"></ng-container>
             <ng-container *ngSwitchCase="'manager'" [ngTemplateOutlet]="managerTemplate"></ng-container>
-            <ng-container *ngSwitchCase="'admin'" [ngTemplateOutlet]="adminTemplate"></ng-container>
+            <!-- <ng-container *ngSwitchCase="'admin'" [ngTemplateOutlet]="adminTemplate"></ng-container> -->
         </ng-container> 
 
         <!--
@@ -60,6 +59,31 @@
                     <br />
                     Login
                 </div>
+                <div title="logout" [ngStyle]="{'display': isLoggedUser ? 'inline-block' : 'none'}">
+                    <svg class="btn-icon" id="logout-btn" (click)="logout()" [ngClass]="{'btn-show': isLoggedUser, 'btn-hide': !isLoggedUser}" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M16 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 
+                        2v2h-2V5H5v14h9v-2h2zm2.5-10.5l-1.414 1.414L20.172 11H10v2h10.172l-3.086 3.086L18.5 17.5L24 12l-5.5-5.5z"/>
+                    </svg>
+                    <br/>
+                    logout
+                </div>
+                <div title="sign in" [ngStyle]="{'display': !isLoggedUser ? 'inline-block' : 'none'}">
+                    <!-- <svg class="btn-icon" id="create-account-btn" (click)="signinManager()" [ngClass]="{'btn-show': !isLoggedUser, 'btn-hide': isLoggedUser}" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" 
+                        viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-6 
+                        2.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5zM19 15H9v-.25C9 12.901 11.254 11 14 11s5 1.901 5 3.75V15z"/><path fill="currentColor" 
+                        d="M4 8H2v12c0 1.103.897 2 2 2h12v-2H4V8z"/>
+                    </svg> -->
+                    <svg class="btn-icon" id="create-account-btn" (click)="openSigninModal()" [ngClass]="{'btn-show': !isLoggedUser, 'btn-hide': isLoggedUser}" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" 
+                        viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-6 
+                        2.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5zM19 15H9v-.25C9 12.901 11.254 11 14 11s5 1.901 5 3.75V15z"/><path fill="currentColor" 
+                        d="M4 8H2v12c0 1.103.897 2 2 2h12v-2H4V8z"/>
+                    </svg>
+                    <br/>
+                    sign in
+                </div>
                 <div title="i'm an user">
                     <svg class="btn-icon" (click)="goToUserPage()" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 
                         12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 
@@ -81,7 +105,7 @@
             </nav>
         </ng-template>
         
-        <ng-template #adminTemplate>
+        <!-- <ng-template #adminTemplate>
             <nav class="icons-navbar" [class.active]="!showMenu">
                 <div title="login as admin">
                     <svg class="btn-icon" id="login-btn" title="login" (click)="loginAdmin()" [class.disable]="isOpenModal" [ngClass]="{'btn-show': !isLoggedUser, 'btn-hide': isLoggedUser}" 
@@ -105,7 +129,7 @@
                     manager
                 </div>
             </nav>
-        </ng-template>
+        </ng-template> -->
         
         <ng-template #userTemplate>
             <nav class="icons-navbar" [class.active]="!showMenu">
@@ -128,7 +152,13 @@
                     logout
                 </div>
                 <div title="sign in" [ngStyle]="{'display': !isLoggedUser ? 'inline-block' : 'none'}">
-                    <svg class="btn-icon" id="create-account-btn" (click)="createAccount()" [ngClass]="{'btn-show': !isLoggedUser, 'btn-hide': isLoggedUser}" aria-hidden="true" role="img" width="1em" height="1em" 
+                    <!-- <svg class="btn-icon" id="create-account-btn" (click)="createAccount()" [ngClass]="{'btn-show': !isLoggedUser, 'btn-hide': isLoggedUser}" aria-hidden="true" role="img" width="1em" height="1em" 
+                        preserveAspectRatio="xMidYMid meet" 
+                        viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-6 
+                        2.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5zM19 15H9v-.25C9 12.901 11.254 11 14 11s5 1.901 5 3.75V15z"/><path fill="currentColor" 
+                        d="M4 8H2v12c0 1.103.897 2 2 2h12v-2H4V8z"/>
+                    </svg> -->
+                    <svg class="btn-icon" id="create-account-btn" (click)="openSigninModal()" [ngClass]="{'btn-show': !isLoggedUser, 'btn-hide': isLoggedUser}" aria-hidden="true" role="img" width="1em" height="1em" 
                         preserveAspectRatio="xMidYMid meet" 
                         viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-6 
                         2.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5zM19 15H9v-.25C9 12.901 11.254 11 14 11s5 1.901 5 3.75V15z"/><path fill="currentColor" 

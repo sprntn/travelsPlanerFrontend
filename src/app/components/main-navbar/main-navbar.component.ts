@@ -8,6 +8,7 @@ import { AddTravelModalService } from 'src/app/modalServices/add-travel-modal.se
 import { LoginManagerModalServiceService } from 'src/app/modalServices/login-manager-modal-service.service';
 import { LoginModalServiceService } from 'src/app/modalServices/login-modal-service.service';
 import { PreferencesModalService } from 'src/app/modalServices/preferences-modal.service';
+//import { SigninManagerModalServiceService } from 'src/app/modalServices/signin-manager-modal-service.service';
 import { SigninModalServiceService } from 'src/app/modalServices/signin-modal-service.service';
 
 @Component({
@@ -41,6 +42,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
     private loginModalService: LoginModalServiceService,
     private loginManagerModalService: LoginManagerModalServiceService,
     private signinModalService: SigninModalServiceService,
+    //private signinManagerModalService: SigninManagerModalServiceService,
     private preferencesModalService: PreferencesModalService,
     private addTravelModalService: AddTravelModalService,
     private router: Router) { }
@@ -76,8 +78,39 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
     */
   }
 
-  private openSigninModal(): void{
-    this.sub = this.signinModalService.openModal(this.entry, this.loginModalTitle).subscribe({
+  //private openSigninModal(role: string): void{
+  //public openSigninModal(role: string): void{
+  // private openUserSigninModal(): void{
+  //   //console.log(`open signin modal as ${role}`);
+  //   //this.sub = this.signinModalService.openModal(this.entry, this.loginModalTitle).subscribe({
+  //   //this.sub = this.signinModalService.openModal(this.entry, role).subscribe({
+  //   this.sub = this.signinModalService.openModal(this.entry).subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //     },
+  //     error: () => {},
+  //     complete: () => {}
+  //   });
+  // }
+
+  // private openManagerSigninModal(): void{
+  //   this.sub = this.signinManagerModalService.openModal(this.entry).subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //     },
+  //     error: () => {},
+  //     complete: () => {}
+  //   });
+  // }
+
+  public openSigninModal(): void{
+    // if(role === 'manager'){
+    //   //open manager modl
+    // }
+    // else{
+    //   this.openUserSigninModal();
+    // }
+    this.sub = this.signinModalService.openModal(this.entry, this.role).subscribe({
       next: (res) => {
         console.log(res);
       },
@@ -85,6 +118,16 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
       complete: () => {}
     });
   }
+
+  // private openSigninManagerModal(): void{
+  //   this.sub = this.signinManagerModalService.openModal(this.entry, this.loginModalTitle).subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //     },
+  //     error: () => {},
+  //     complete: () => {}
+  //   });
+  // }
 
   private openPreferencesModal():void{
     //this.sub = this.preferencesModalService.openModal(this.entry).subscribe({
@@ -200,13 +243,18 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['main-page/no-user-sites']);
   }
 
-  createAccount():void{
-    console.log("create account");
-    //disable signin button
+  // signinManager(): void{
+  //    console.log("add manager");
+  //    this.openSigninManagerModal();
+  // }
 
-    //open modal register
-    this.openSigninModal();
-  }
+  // createAccount(role: string):void{
+  //   console.log("create account");
+  //   //disable signin button
+
+  //   //open modal register
+  //   this.openSigninModal(role);
+  // }
 
   setPreferences(): void{
     console.log("set preferences");
@@ -252,15 +300,15 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  goToAdminPage():void{
-    console.log("admin page");
-    this.role = "admin";
-    this,this.router.navigate(['/admin'])
-  }
+  // goToAdminPage():void{
+  //   console.log("admin page");
+  //   //this.role = "admin";
+  //   this,this.router.navigate(['/admin'])
+  // }
   
-  loginAdmin(): void{
-    console.log("login admin");
-  }
+  // loginAdmin(): void{
+  //   console.log("login admin");
+  // }
 
   goToManagerPage():void{
     console.log("manager page");

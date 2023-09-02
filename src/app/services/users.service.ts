@@ -16,7 +16,7 @@ export class UsersService {
 
   //addUser(newUser: User): Observable<User>{
   addUser(newUser: User){
-    console.log("adding user");
+    console.log(`adding user: ${JSON.stringify(newUser)}`);
     return this.http_client.post<User>(this.apiURL + 'addUser/', newUser).pipe(catchError(this.handleUserError));
   }
 
@@ -36,13 +36,13 @@ export class UsersService {
   }
 
   addReference(newReference: {userEmail:string, categoryId: number, categoryRating: number}) {
-    console.log("adding preference: \n" + newReference);
+    console.log("adding preference: \n" + JSON.stringify(newReference));
     return this.http_client.post<{userEmail:string, categoryId: number, categoryRating: number}>
     (this.apiURL + 'addPreference', newReference).pipe(catchError(this.handleUserError));
   }
 
   updatePreference(upReference: {userEmail:string, categoryId: number, categoryRating: number}){
-    console.log("updating reference: \n" + upReference);
+    console.log("updating reference: \n" + JSON.stringify(upReference));
     return this.http_client.put<{userEmail:string, categoryId: number, categoryRating: number}>(this.apiURL + 'updatePreference', upReference).pipe(catchError(this.handleUserError));
   }
 
